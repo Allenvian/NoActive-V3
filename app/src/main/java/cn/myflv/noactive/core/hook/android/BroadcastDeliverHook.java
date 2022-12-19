@@ -35,7 +35,7 @@ public class BroadcastDeliverHook {
         }
         param.setObjectExtra(FieldConstants.app, app);
         XposedHelpers.setObjectField(receiverList, FieldConstants.app, null);
-        XLog.d(processRecord.getProcessNameWithUser() + " clear broadcast");
+        XLog.d(processRecord.getProcessNameWithUser(), "clear broadcast");
     }
 
     private static void after(XC_MethodHook.MethodHookParam param) {
