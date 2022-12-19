@@ -26,7 +26,7 @@ public class BroadcastDeliverHook {
         Object app = HookHelpers.getObjByPath(receiverList, FieldConstants.app);
         ProcessRecord processRecord = new ProcessRecord(app);
         AppInfo appInfo = processRecord.getAppInfo();
-        if (!appInfo.isTargetApp()) {
+        if (appInfo.isIgnoreApp()) {
             return;
         }
         if (!appInfo.isFrozen()) {

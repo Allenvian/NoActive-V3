@@ -27,8 +27,8 @@ public class AppInfo {
         return packageName + CommonConstants.COLON + userId;
     }
 
-    public boolean isTargetApp() {
-        return !UserConfig.whiteApps.contains(packageName);
+    public boolean isIgnoreApp() {
+        return UserConfig.whiteApps.contains(packageName);
     }
 
     public static AppInfo getInstance(Integer userId, String packageName) {

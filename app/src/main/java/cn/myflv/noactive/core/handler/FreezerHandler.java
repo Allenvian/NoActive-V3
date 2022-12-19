@@ -6,7 +6,7 @@ import cn.myflv.noactive.core.util.XLog;
 public class FreezerHandler {
 
     public static void freeze(AppInfo appInfo) {
-        if (!appInfo.isTargetApp()) {
+        if (appInfo.isIgnoreApp()) {
             return;
         }
         XLog.i(appInfo.getKey(), "冻结");
