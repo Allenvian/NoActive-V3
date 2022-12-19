@@ -11,6 +11,7 @@ import cn.myflv.noactive.core.proxy.NetworkManagementService;
 import cn.myflv.noactive.core.proxy.PowerManagerService;
 import cn.myflv.noactive.core.proxy.ServiceManager;
 import cn.myflv.noactive.core.util.XLog;
+import cn.myflv.noactive.enums.AndroidVersionEnum;
 import cn.myflv.noactive.server.NoActiveService;
 import de.robv.android.xposed.XC_MethodHook;
 import lombok.Getter;
@@ -26,6 +27,7 @@ public class Android {
     public static void setBooting(XC_MethodHook.MethodHookParam param) {
         booting = false;
         XLog.i("系统启动完成");
+        XLog.i("安卓版本", AndroidVersionEnum.getCurrentVersion());
         NoActiveService noActiveService = new NoActiveService();
         ServiceManager.addService(CommonConstants.NO_ACTIVE_SERVICE, noActiveService);
         XLog.i("注入系统服务");
