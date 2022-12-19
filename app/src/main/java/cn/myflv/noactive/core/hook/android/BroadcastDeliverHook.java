@@ -7,6 +7,7 @@ import cn.myflv.noactive.core.util.HookHelpers;
 import de.robv.android.xposed.XC_MethodHook;
 
 public class BroadcastDeliverHook {
+
     public static void hook() {
         HookHelpers.config().className(true,ClassConstants.BroadcastQueue).methodName(MethodConstants.deliverToRegisteredReceiverLocked)
                 .params(ClassConstants.BroadcastRecord, ClassConstants.BroadcastFilter, boolean.class, int.class)
