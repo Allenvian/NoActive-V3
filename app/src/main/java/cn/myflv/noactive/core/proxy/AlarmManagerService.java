@@ -12,8 +12,6 @@ import de.robv.android.xposed.XC_MethodHook;
 
 public class AlarmManagerService {
 
-    public final static int MAIN_USER = 0;
-
     private static Object instance;
 
     private static void setInstance(XC_MethodHook.MethodHookParam param) {
