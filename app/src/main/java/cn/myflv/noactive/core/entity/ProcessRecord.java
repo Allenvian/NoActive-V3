@@ -15,21 +15,21 @@ public class ProcessRecord {
     private final int userId;
     private final ApplicationInfo applicationInfo;
     private final String packageName;
-    private Object processRecord;
+    private Object instance;
 
-    public ProcessRecord(Object processRecord) {
-        this.processRecord = processRecord;
+    public ProcessRecord(Object instance) {
+        this.instance = instance;
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
-            this.pid = XposedHelpers.getIntField(processRecord, FieldConstants.mPid);
+            this.pid = XposedHelpers.getIntField(instance, FieldConstants.mPid);
         } else {
-            this.pid = XposedHelpers.getIntField(processRecord, FieldConstants.pid);
+            this.pid = XposedHelpers.getIntField(instance, FieldConstants.pid);
         }
-        this.uid = XposedHelpers.getIntField(processRecord, FieldConstants.uid);
+        this.uid = XposedHelpers.getIntField(instance, FieldConstants.uid);
 
-        this.userId = XposedHelpers.getIntField(processRecord, FieldConstants.userId);
-        this.applicationInfo = (ApplicationInfo) XposedHelpers.getObjectField(processRecord, FieldConstants.info);
+        this.userId = XposedHelpers.getIntField(instance, FieldConstants.userId);
+        this.applicationInfo = (ApplicationInfo) XposedHelpers.getObjectField(instance, FieldConstants.info);
         this.packageName = applicationInfo.packageName;
-        this.processName = (String) XposedHelpers.getObjectField(processRecord, FieldConstants.processName);
+        this.processName = (String) XposedHelpers.getObjectField(instance, FieldConstants.processName);
     }
 
     public AppInfo getAppInfo() {
@@ -49,7 +49,7 @@ public class ProcessRecord {
 
 
     public void setCurAdj(int curAdj) {
-        XposedHelpers.setIntField(processRecord, FieldConstants.curAdj, curAdj);
+        XposedHelpers.setIntField(instance, FieldConstants.curAdj, curAdj);
     }
 
     public boolean isSandboxProcess() {
