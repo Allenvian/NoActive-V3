@@ -16,8 +16,6 @@ public class ActivityManagerService {
 
     private static Object instance;
 
-
-
     private static void setInstance(XC_MethodHook.MethodHookParam param) {
         if (Objects.nonNull(instance)) {
             return;
