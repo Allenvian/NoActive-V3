@@ -32,6 +32,10 @@ public class ProcessRecord {
         this.processName = (String) XposedHelpers.getObjectField(processRecord, FieldConstants.processName);
     }
 
+    public AppInfo getAppInfo() {
+        return AppInfo.getInstance(userId, packageName);
+    }
+
     public String getAbsoluteProcessName() {
         // 相对进程名
         if (processName.startsWith(".")) {

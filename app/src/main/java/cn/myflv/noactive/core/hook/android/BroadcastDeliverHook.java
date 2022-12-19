@@ -3,6 +3,8 @@ package cn.myflv.noactive.core.hook.android;
 import cn.myflv.noactive.constant.ClassConstants;
 import cn.myflv.noactive.constant.FieldConstants;
 import cn.myflv.noactive.constant.MethodConstants;
+import cn.myflv.noactive.core.entity.AppInfo;
+import cn.myflv.noactive.core.entity.ProcessRecord;
 import cn.myflv.noactive.core.hook.Android;
 import cn.myflv.noactive.core.util.HookHelpers;
 import de.robv.android.xposed.XC_MethodHook;
@@ -19,6 +21,11 @@ public class BroadcastDeliverHook {
 
     private static void before(XC_MethodHook.MethodHookParam param) {
         Object app = HookHelpers.getObjByPath(param.args[1], FieldConstants.receiverList, FieldConstants.app);
+        ProcessRecord processRecord = new ProcessRecord(app);
+        AppInfo appInfo = processRecord.getAppInfo();
+        if (!appInfo.isFrozen()){
+            return;
+        }
 
     }
 
