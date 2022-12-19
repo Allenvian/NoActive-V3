@@ -246,7 +246,7 @@ public class HookHelpers {
         }
     }
 
-    private final static IHookReplace DO_NOTHING = (param) -> null;
+    public final static IHookReplace DO_NOTHING = (param) -> null;
 
     public static Object invokeOriginalMethod(XC_MethodHook.MethodHookParam param) {
         try {

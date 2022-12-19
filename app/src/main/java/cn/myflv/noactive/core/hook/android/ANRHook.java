@@ -23,7 +23,7 @@ public class ANRHook {
                 .params(isAndroidQ, () -> new Object[]{
                         ClassConstants.ProcessRecord, String.class, ClassConstants.ApplicationInfo,
                         String.class, ClassConstants.WindowProcessController, boolean.class, String.class})
-                .hookReplace(ANRHook::keep).hookReplace(isAndroidQ, (param) -> null).hook();
+                .hookReplace(ANRHook::keep).hookReplace(isAndroidQ, HookHelpers.DO_NOTHING).hook();
     }
 
     public static Object keep(XC_MethodHook.MethodHookParam param) {
