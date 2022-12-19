@@ -1,9 +1,6 @@
 package cn.myflv.noactive.core.handler;
 
-import java.util.List;
-
 import cn.myflv.noactive.core.entity.AppInfo;
-import cn.myflv.noactive.core.entity.ProcessRecord;
 import cn.myflv.noactive.core.util.ThreadUtils;
 import cn.myflv.noactive.core.util.XLog;
 
