@@ -76,7 +76,7 @@ public class ThreadUtils {
             sleep(delay);
             synchronized (threadTokenMap) {
                 if (!Objects.equals(threadTokenMap.get(key), currentToken)) {
-                    XLog.d(key + " thread updated");
+                    XLog.d(key, "thread updated");
                     return;
                 }
             }
