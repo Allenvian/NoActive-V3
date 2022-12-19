@@ -7,29 +7,29 @@ import java.util.Objects;
 import lombok.Getter;
 
 public enum AndroidVersionEnum {
-    R(30, "R"),
-    S(31, "S");
+    R(30, "11"),
+    S(31, "12");
 
     @Getter
     private final Integer sdkVersion;
     @Getter
-    private final String versionCode;
+    private final String version;
 
-    AndroidVersionEnum(Integer sdkVersion, String versionCode) {
+    AndroidVersionEnum(Integer sdkVersion, String version) {
         this.sdkVersion = sdkVersion;
-        this.versionCode = versionCode;
+        this.version = version;
     }
 
-    public static String getVersionCodeBySdkVersion(Integer value) {
+    public static String getVersionBySdkVersion(Integer value) {
         for (AndroidVersionEnum versionEnum : AndroidVersionEnum.values()) {
             if (Objects.equals(versionEnum.getSdkVersion(), value)) {
-                return versionEnum.getVersionCode();
+                return versionEnum.getVersion();
             }
         }
         return null;
     }
 
-    public static String getCurrentVersionCode() {
-        return getVersionCodeBySdkVersion(Build.VERSION.SDK_INT);
+    public static String getCurrentVersion() {
+        return getVersionBySdkVersion(Build.VERSION.SDK_INT);
     }
 }
