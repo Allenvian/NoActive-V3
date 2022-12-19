@@ -238,6 +238,9 @@ public class HookHelpers {
         Object tmp = obj;
         for (String path : paths) {
             tmp = XposedHelpers.getObjectField(tmp, path);
+            if (tmp == null) {
+                return tmp;
+            }
         }
         return tmp;
     }
