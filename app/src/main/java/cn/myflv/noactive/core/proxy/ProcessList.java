@@ -21,7 +21,7 @@ public class ProcessList {
 
     public Map<String, List<ProcessRecord>> getProcessMap() {
         Map<String, List<ProcessRecord>> processMap = new HashMap<>();
-        synchronized (processList) {
+        synchronized (processList.getObj()) {
             try {
                 List<?> processRecordList = (List<?>) XposedHelpers.getObjectField(processList, FieldConstants.mLruProcesses);
                 for (Object proc : processRecordList) {
