@@ -57,7 +57,7 @@ public class BroadcastDeliverHook {
     private static void clearBroadcast(XC_MethodHook.MethodHookParam param, ProcessRecord processRecord) {
         param.setObjectExtra(FieldConstants.app, processRecord.getInstance());
         setApp(param, null);
-        XLog.d(processRecord.getProcessNameWithUser(), "clear broadcast");
+        XLog.d(processRecord.getProcessNameWithUser(), "清理广播");
     }
 
     private static void restoreBroadcast(XC_MethodHook.MethodHookParam param) {
@@ -71,12 +71,14 @@ public class BroadcastDeliverHook {
     private static void broadcastStart(XC_MethodHook.MethodHookParam param, AppInfo appInfo) {
         appInfo.setBroadcast(true);
         param.setObjectExtra(KEY, appInfo.getKey());
+        XLog.d(appInfo.getKey(), "开始广播");
     }
 
     private static void broadcastFinish(XC_MethodHook.MethodHookParam param) {
         String appKey = (String) param.getObjectExtra(KEY);
         AppInfo appInfo = AppInfo.getInstance(appKey);
         appInfo.setBroadcast(false);
+        XLog.d(appInfo.getKey(), "结束广播");
     }
 
 }

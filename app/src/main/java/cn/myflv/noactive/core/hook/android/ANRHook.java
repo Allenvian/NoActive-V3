@@ -35,7 +35,7 @@ public class ANRHook {
         if (!appInfo.isFrozen()) {
             return HookHelpers.invokeOriginalMethod(param);
         }
-        XLog.d("keep", processRecord.getProcessNameWithUser());
+        XLog.d("阻止", processRecord.getProcessNameWithUser(), "ANR");
         return null;
     }
 
