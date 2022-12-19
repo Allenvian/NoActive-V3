@@ -7,6 +7,7 @@ import cn.myflv.noactive.core.hook.android.ActivitySwitchHook;
 import cn.myflv.noactive.core.hook.android.BroadcastDeliverHook;
 import cn.myflv.noactive.core.hook.android.SystemReadyHook;
 import cn.myflv.noactive.core.proxy.ActivityManagerService;
+import cn.myflv.noactive.core.proxy.AlarmManagerService;
 import cn.myflv.noactive.core.proxy.AppStandbyController;
 import cn.myflv.noactive.core.proxy.NetworkManagementService;
 import cn.myflv.noactive.core.proxy.PowerManagerService;
@@ -43,6 +44,7 @@ public class Android {
         ActivityManagerService.loadHook();
         PowerManagerService.loadHook();
         NetworkManagementService.loadHook();
+        AlarmManagerService.loadHook();
         AppStandbyController.loadHook();
         BroadcastDeliverHook.hook();
         ANRHook.hook();
