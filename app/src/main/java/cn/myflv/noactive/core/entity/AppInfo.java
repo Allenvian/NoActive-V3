@@ -1,10 +1,12 @@
 package cn.myflv.noactive.core.entity;
 
 
+import java.util.List;
 import java.util.Optional;
 
 import cn.myflv.noactive.constant.CommonConstants;
 import cn.myflv.noactive.core.proxy.ActivityManagerService;
+import cn.myflv.noactive.core.proxy.ProcessList;
 import lombok.Data;
 
 @Data
@@ -42,6 +44,10 @@ public class AppInfo {
 
     public boolean isIgnoreApp() {
         return UserConfig.whiteApps.contains(packageName);
+    }
+
+    public List<ProcessRecord> getProcessList() {
+        return ProcessList.getProcessList(userId, packageName);
     }
 
 }

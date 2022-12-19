@@ -22,7 +22,7 @@ public class ProcessList {
         ProcessList.processList.setObj(processList);
     }
 
-    public Map<String, List<ProcessRecord>> getProcessMap() {
+    public static Map<String, List<ProcessRecord>> getProcessMap() {
         Map<String, List<ProcessRecord>> processMap = new HashMap<>();
         synchronized (processList.getObj()) {
             try {
@@ -40,11 +40,11 @@ public class ProcessList {
         return processMap;
     }
 
-    public List<ProcessRecord> getProcessList(String packageName) {
+    public static List<ProcessRecord> getProcessList(String packageName) {
         return getProcessList(null, packageName);
     }
 
-    public List<ProcessRecord> getProcessList(Integer userId, String packageName) {
+    public static List<ProcessRecord> getProcessList(Integer userId, String packageName) {
         int user = Optional.ofNullable(userId).orElse(ActivityManagerService.MAIN_USER);
         List<ProcessRecord> processRecords = getProcessMap().get(packageName);
         if (processRecords == null) {
