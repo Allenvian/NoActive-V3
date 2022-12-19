@@ -1,6 +1,5 @@
 package cn.myflv.noactive.server;
 
-import android.content.Context;
 import android.os.RemoteException;
 
 import cn.myflv.noactive.INoActiveService;

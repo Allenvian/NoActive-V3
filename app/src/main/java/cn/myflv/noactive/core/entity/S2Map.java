@@ -24,7 +24,7 @@ public class S2Map<R, S, T> {
             return t;
         }
         synchronized (getInnerMap(r)) {
-           return getInnerMap(r).computeIfAbsent(s, mappingFunction);
+            return getInnerMap(r).computeIfAbsent(s, mappingFunction);
         }
     }
 

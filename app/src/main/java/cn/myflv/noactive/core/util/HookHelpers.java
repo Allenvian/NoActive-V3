@@ -111,6 +111,21 @@ public class HookHelpers {
         return new Config();
     }
 
+    public static Class<?> findClass(String className) {
+        return XposedHelpers.findClass(className, HookHandler.getClassLoader());
+    }
+
+    public static Object getObjByPath(Object obj, String... paths) {
+        Object tmp = obj;
+        for (String path : paths) {
+            tmp = XposedHelpers.getObjectField(tmp, path);
+            if (tmp == null) {
+                return tmp;
+            }
+        }
+        return tmp;
+    }
+
     /**
      * Hook参数接口.
      */
@@ -228,21 +243,6 @@ public class HookHelpers {
         public void hook() {
             HookHelpers.hookMethod(className, methodName, () -> params, hookReplace, hookBefore, hookAfter);
         }
-    }
-
-    public static Class<?> findClass(String className) {
-        return XposedHelpers.findClass(className, HookHandler.getClassLoader());
-    }
-
-    public static Object getObjByPath(Object obj, String... paths) {
-        Object tmp = obj;
-        for (String path : paths) {
-            tmp = XposedHelpers.getObjectField(tmp, path);
-            if (tmp == null) {
-                return tmp;
-            }
-        }
-        return tmp;
     }
 
 

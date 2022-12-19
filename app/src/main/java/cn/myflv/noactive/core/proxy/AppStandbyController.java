@@ -13,7 +13,7 @@ public class AppStandbyController {
     private static Object instance;
 
     private static void setInstance(XC_MethodHook.MethodHookParam param) {
-        synchronized (AppStandbyController.class){
+        synchronized (AppStandbyController.class) {
             if (Objects.nonNull(instance)) {
                 return;
             }

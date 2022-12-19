@@ -20,17 +20,6 @@ public class AppInfo {
         this.packageName = packageName;
     }
 
-    public String getKey() {
-        if (userId == ActivityManagerService.MAIN_USER) {
-            return packageName;
-        }
-        return packageName + CommonConstants.COLON + userId;
-    }
-
-    public boolean isIgnoreApp() {
-        return UserConfig.whiteApps.contains(packageName);
-    }
-
     public static AppInfo getInstance(Integer userId, String packageName) {
         int user = Optional.ofNullable(userId).orElse(ActivityManagerService.MAIN_USER);
         return s2Map.get(user, packageName, k -> new AppInfo(user, packageName));
@@ -42,6 +31,17 @@ public class AppInfo {
             return AppInfo.getInstance(ActivityManagerService.MAIN_USER, key);
         }
         return AppInfo.getInstance(Integer.valueOf(info[0]), info[1]);
+    }
+
+    public String getKey() {
+        if (userId == ActivityManagerService.MAIN_USER) {
+            return packageName;
+        }
+        return packageName + CommonConstants.COLON + userId;
+    }
+
+    public boolean isIgnoreApp() {
+        return UserConfig.whiteApps.contains(packageName);
     }
 
 }

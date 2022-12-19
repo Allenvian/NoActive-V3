@@ -19,6 +19,7 @@ public class NetworkManagementService {
         instance = param.thisObject;
         XLog.i("NetworkManagementService 获取成功");
     }
+
     public static void loadHook() {
         HookHelpers.hookAfter(ClassConstants.NetworkManagementService, MethodConstants.systemReady, NetworkManagementService::setInstance);
         XLog.i("NetworkManagementService hook 成功");
