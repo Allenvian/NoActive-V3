@@ -20,11 +20,6 @@ public class ProcessList {
         this.processList = processList;
     }
 
-    public static void setOomAdj(ClassLoader classLoader, int pid, int uid, int oomAdj) {
-        Class<?> ProcessList = XposedHelpers.findClass(ClassConstants.ProcessList, classLoader);
-        XposedHelpers.callStaticMethod(ProcessList, MethodConstants.setOomAdj, pid, uid, oomAdj);
-    }
-
     public Map<String, List<ProcessRecord>> getProcessMap() {
         Map<String, List<ProcessRecord>> processMap = new HashMap<>();
         synchronized (processList) {
