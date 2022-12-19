@@ -13,9 +13,9 @@ public class ActivitySwitchHandler {
     public static void newEvent(AppInfo currentApp) {
         XLog.d("当前应用", currentApp.getKey());
         // 解冻当前App
-        FreezerHandler.unFreeze(currentApp);
+        FreezerHandler.unFreezeIfNeed(currentApp);
         // 冻结当前App
-        FreezerHandler.freeze(lastApp);
+        FreezerHandler.freezeIfNeed(lastApp);
         lastApp = currentApp;
     }
 
