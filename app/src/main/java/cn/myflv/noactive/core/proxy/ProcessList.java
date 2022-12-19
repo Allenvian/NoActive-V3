@@ -5,19 +5,18 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import cn.myflv.noactive.constant.ClassConstants;
 import cn.myflv.noactive.constant.FieldConstants;
-import cn.myflv.noactive.constant.MethodConstants;
+import cn.myflv.noactive.core.entity.LockObj;
 import cn.myflv.noactive.core.entity.ProcessRecord;
 import de.robv.android.xposed.XposedHelpers;
 import lombok.Data;
 
 @Data
 public class ProcessList {
-    private final Object processList;
+    private final static LockObj<Object> processList = new LockObj<>();
 
-    public ProcessList(Object processList) {
-        this.processList = processList;
+    public static void setInstance(Object processList) {
+        ProcessList.processList.setObj(processList);
     }
 
     public Map<String, List<ProcessRecord>> getProcessMap() {
