@@ -233,4 +233,12 @@ public class HookHelpers {
     public static Class<?> findClass(String className) {
         return XposedHelpers.findClass(className, HookHandler.getClassLoader());
     }
+
+    public static Object getObjByPath(Object obj, String... paths) {
+        Object tmp = obj;
+        for (String path : paths) {
+            tmp = XposedHelpers.getObjectField(tmp, path);
+        }
+        return tmp;
+    }
 }
