@@ -1,5 +1,7 @@
 package cn.myflv.noactive.core.util;
 
+import cn.myflv.noactive.wrapper.RunnableWrapper;
+
 public class ThreadUtils {
 
     public void runNoThrow(RunnableWrapper runnable) {
@@ -8,11 +10,6 @@ public class ThreadUtils {
         } catch (Throwable throwable) {
             XLog.e(throwable.getMessage());
         }
-    }
-
-    @FunctionalInterface
-    public interface RunnableWrapper {
-        void run() throws Throwable;
     }
 
 }
