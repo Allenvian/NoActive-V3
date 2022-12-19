@@ -24,6 +24,31 @@ public class BroadcastDeliverHook {
                 .hookAfter(param -> Android.systemReady(() -> after(param))).hook();
     }
 
+    private static void before(XC_MethodHook.MethodHookParam param) {
+        // 获取进程
+        Object app = HookHelpers.getObjByPath(param.args[1], FieldConstants.receiverList, FieldConstants.app);
+        // 转包装对象
+        ProcessRecord processRecord = new ProcessRecord(app);
+        // 获取应用信息
+        AppInfo appInfo = processRecord.getAppInfo();
+        if (appInfo.isIgnoreApp()) {
+            return;
+        }
+        if (!appInfo.isFrozen()) {
+            broadcastStart(param, appInfo);
+            return;
+        }
+        clearBroadcast(param, processRecord);
+    }
+
+    private static void after(XC_MethodHook.MethodHookParam param) {
+        if (Objects.isNull(param.getObjectExtra(KEY))) {
+            restoreBroadcast(param);
+        } else {
+            broadcastFinish(param);
+        }
+    }
+
     private static void setApp(XC_MethodHook.MethodHookParam param, Object value) {
         Object receiverList = HookHelpers.getObjByPath(param.args[1], FieldConstants.receiverList);
         XposedHelpers.setObjectField(receiverList, FieldConstants.app, value);
@@ -52,31 +77,6 @@ public class BroadcastDeliverHook {
         String appKey = (String) param.getObjectExtra(KEY);
         AppInfo appInfo = AppInfo.getInstance(appKey);
         appInfo.setBroadcast(false);
-    }
-
-    private static void before(XC_MethodHook.MethodHookParam param) {
-        // 获取进程
-        Object app = HookHelpers.getObjByPath(param.args[1], FieldConstants.receiverList, FieldConstants.app);
-        // 转包装对象
-        ProcessRecord processRecord = new ProcessRecord(app);
-        // 获取应用信息
-        AppInfo appInfo = processRecord.getAppInfo();
-        if (appInfo.isIgnoreApp()) {
-            return;
-        }
-        if (!appInfo.isFrozen()) {
-            broadcastStart(param, appInfo);
-            return;
-        }
-        clearBroadcast(param, processRecord);
-    }
-
-    private static void after(XC_MethodHook.MethodHookParam param) {
-        if (Objects.isNull(param.getObjectExtra(KEY))) {
-            restoreBroadcast(param);
-        } else {
-            broadcastFinish(param);
-        }
     }
 
 }
