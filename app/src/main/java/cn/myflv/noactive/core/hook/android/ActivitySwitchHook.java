@@ -3,7 +3,6 @@ package cn.myflv.noactive.core.hook.android;
 import android.app.usage.UsageEvents;
 import android.content.ComponentName;
 import android.content.Intent;
-import android.os.Build;
 
 import java.util.Arrays;
 import java.util.List;
@@ -13,6 +12,7 @@ import cn.myflv.noactive.constant.MethodConstants;
 import cn.myflv.noactive.core.entity.AppInfo;
 import cn.myflv.noactive.core.handler.ActivitySwitchHandler;
 import cn.myflv.noactive.core.hook.Android;
+import cn.myflv.noactive.core.util.DeviceHelpers;
 import cn.myflv.noactive.core.util.HookHelpers;
 import de.robv.android.xposed.XC_MethodHook;
 
@@ -31,7 +31,7 @@ public class ActivitySwitchHook {
     public static void hook() {
         HookHelpers.config().className(ClassConstants.ActivityManagerService).methodName(MethodConstants.updateActivityUsageStats)
                 .params(ClassConstants.ComponentName, int.class, int.class, ClassConstants.IBinder, ClassConstants.ComponentName)
-                .params(Build.MANUFACTURER.equals("samsung"), () ->
+                .params(DeviceHelpers.isSamsung(), () ->
                         new Object[]{ClassConstants.ComponentName, int.class, int.class, ClassConstants.IBinder, ClassConstants.ComponentName, Intent.class})
                 .hookBefore(param -> Android.systemReady(() -> send(param))).hook();
     }
