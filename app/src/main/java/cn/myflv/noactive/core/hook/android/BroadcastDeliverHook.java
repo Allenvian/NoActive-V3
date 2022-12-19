@@ -1,5 +1,7 @@
 package cn.myflv.noactive.core.hook.android;
 
+import java.util.Objects;
+
 import cn.myflv.noactive.constant.ClassConstants;
 import cn.myflv.noactive.constant.FieldConstants;
 import cn.myflv.noactive.constant.MethodConstants;
@@ -35,7 +37,7 @@ public class BroadcastDeliverHook {
 
     private static void restoreBroadcast(XC_MethodHook.MethodHookParam param) {
         Object app = param.getObjectExtra(FieldConstants.app);
-        if (app == null) {
+        if (Objects.isNull(app)) {
             return;
         }
         setApp(param, app);
@@ -70,7 +72,7 @@ public class BroadcastDeliverHook {
     }
 
     private static void after(XC_MethodHook.MethodHookParam param) {
-        if (param.getObjectExtra(KEY) == null) {
+        if (Objects.isNull(param.getObjectExtra(KEY))) {
             restoreBroadcast(param);
         } else {
             broadcastFinish(param);
