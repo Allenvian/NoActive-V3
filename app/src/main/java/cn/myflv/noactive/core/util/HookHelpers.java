@@ -8,6 +8,7 @@ import java.util.Objects;
 import cn.myflv.noactive.core.HookHandler;
 import de.robv.android.xposed.XC_MethodHook;
 import de.robv.android.xposed.XC_MethodReplacement;
+import de.robv.android.xposed.XposedBridge;
 import de.robv.android.xposed.XposedHelpers;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -245,5 +246,14 @@ public class HookHelpers {
         }
     }
 
+    private final static IHookReplace DO_NOTHING = (param) -> null;
+
+    public static Object invokeOriginalMethod(XC_MethodHook.MethodHookParam param) {
+        try {
+            return XposedBridge.invokeOriginalMethod(param.method, param.thisObject, param.args);
+        } catch (Throwable throwable) {
+            return null;
+        }
+    }
 
 }
