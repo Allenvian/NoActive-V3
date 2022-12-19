@@ -26,7 +26,7 @@ public enum AndroidVersionEnum {
                 return versionEnum.getVersion();
             }
         }
-        return null;
+        return "未知版本";
     }
 
     public static String getCurrentVersion() {
