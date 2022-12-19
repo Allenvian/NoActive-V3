@@ -8,4 +8,5 @@ public interface CommonConstants {
     String SPACE = " ";
     String EMPTY = "";
     String COLON = ":";
+    String DOT = ".";
 }

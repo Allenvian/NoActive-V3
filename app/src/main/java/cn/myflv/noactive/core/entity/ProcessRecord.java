@@ -3,6 +3,7 @@ package cn.myflv.noactive.core.entity;
 import android.content.pm.ApplicationInfo;
 import android.os.Build;
 
+import cn.myflv.noactive.constant.CommonConstants;
 import cn.myflv.noactive.constant.FieldConstants;
 import de.robv.android.xposed.XposedHelpers;
 import lombok.Data;
@@ -38,9 +39,9 @@ public class ProcessRecord {
 
     public String getAbsoluteProcessName() {
         // 相对进程名
-        if (processName.startsWith(".")) {
+        if (processName.startsWith(CommonConstants.DOT)) {
             // 拼成绝对进程名
-            return packageName + ":" + processName.substring(1);
+            return packageName + CommonConstants.COLON + processName.substring(1);
         } else {
             // 是绝对进程直接返回
             return processName;
@@ -64,7 +65,7 @@ public class ProcessRecord {
         if (userId == 0) {
             return processName;
         } else {
-            return processName + ":" + userId;
+            return processName + CommonConstants.COLON + userId;
         }
     }
 
@@ -72,7 +73,7 @@ public class ProcessRecord {
         if (userId == 0) {
             return packageName;
         } else {
-            return packageName + ":" + userId;
+            return packageName + CommonConstants.COLON + userId;
         }
     }
 }
