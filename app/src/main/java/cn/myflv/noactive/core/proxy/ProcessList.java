@@ -1,9 +1,12 @@
 package cn.myflv.noactive.core.proxy;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
+import java.util.stream.Collectors;
 
 import cn.myflv.noactive.constant.FieldConstants;
 import cn.myflv.noactive.core.entity.LockObj;
@@ -38,10 +41,17 @@ public class ProcessList {
     }
 
     public List<ProcessRecord> getProcessList(String packageName) {
+        return getProcessList(null, packageName);
+    }
+
+    public List<ProcessRecord> getProcessList(Integer userId, String packageName) {
+        int user = Optional.ofNullable(userId).orElse(ActivityManagerService.MAIN_USER);
         List<ProcessRecord> processRecords = getProcessMap().get(packageName);
         if (processRecords == null) {
-            return new ArrayList<>();
+            return Collections.emptyList();
         }
-        return processRecords;
+        return processRecords.stream()
+                .filter(processRecord -> processRecord.getUserId() == user)
+                .collect(Collectors.toList());
     }
 }
