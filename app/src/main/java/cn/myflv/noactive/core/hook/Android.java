@@ -3,6 +3,7 @@ package cn.myflv.noactive.core.hook;
 import cn.myflv.noactive.constant.CommonConstants;
 import cn.myflv.noactive.core.HookHandler;
 import cn.myflv.noactive.core.hook.android.ActivitySwitchHook;
+import cn.myflv.noactive.core.hook.android.BroadcastDeliverHook;
 import cn.myflv.noactive.core.hook.android.SystemReadyHook;
 import cn.myflv.noactive.core.proxy.ActivityManagerService;
 import cn.myflv.noactive.core.proxy.AppStandbyController;
@@ -41,6 +42,7 @@ public class Android {
         NetworkManagementService.loadHook();
         AppStandbyController.loadHook();
         ActivitySwitchHook.hook();
+        BroadcastDeliverHook.hook();
     }
 
     public static void systemReady(Runnable runnable) {

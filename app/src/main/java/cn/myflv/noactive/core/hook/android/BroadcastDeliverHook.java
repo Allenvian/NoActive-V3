@@ -17,12 +17,12 @@ public class BroadcastDeliverHook {
     }
 
 
-    public static void before(XC_MethodHook.MethodHookParam param) {
+    private static void before(XC_MethodHook.MethodHookParam param) {
         Object app = HookHelpers.getObjByPath(param.args[1], FieldConstants.receiverList, FieldConstants.app);
 
     }
 
-    public static void after(XC_MethodHook.MethodHookParam param) {
+    private static void after(XC_MethodHook.MethodHookParam param) {
 
     }
 
