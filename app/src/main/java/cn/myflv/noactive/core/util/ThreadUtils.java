@@ -145,10 +145,9 @@ public class ThreadUtils {
     public static void printStackTrace(Throwable throwable) {
         XLog.e("---------------> ");
         XLog.e(throwable.getMessage());
-        StackTraceElement[] stackElements = throwable.getStackTrace();
-        for (StackTraceElement element : stackElements) {
-            XLog.e("at " + element.getClassName() + "." + element.getMethodName() +
-                    "(" + element.getFileName() + ":" + element.getLineNumber() + ")");
+        for (StackTraceElement element : throwable.getStackTrace()) {
+            XLog.e("at " + element.getClassName() + "." + element.getMethodName()
+                    + "(" + element.getFileName() + ":" + element.getLineNumber() + ")");
         }
         XLog.e(" <---------------");
     }
