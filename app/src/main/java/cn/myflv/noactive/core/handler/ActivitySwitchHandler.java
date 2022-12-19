@@ -4,6 +4,9 @@ import cn.myflv.noactive.constant.CommonConstants;
 import cn.myflv.noactive.core.entity.AppInfo;
 import cn.myflv.noactive.core.util.XLog;
 
+/**
+ * App切换处理器(仅处理切换).
+ */
 public class ActivitySwitchHandler {
     /**
      * 上一个App.
